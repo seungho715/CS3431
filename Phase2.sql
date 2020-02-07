@@ -235,7 +235,7 @@ INSERT INTO StaysIn(AdminID,RoomNumber,StartDate,EndDate) VALUES ('5','1004',TO_
 /* Q1 */
 SELECT RoomNumber
 FROM Room
-WHERE Occuipied = 1
+WHERE Occuipied = 1;
 
 /* Q2 */
 Select EmployeeID, FirstName, LastName, Salary 
@@ -245,10 +245,9 @@ AND
 JobTitle = 'Regular Employee';
 
 /* Q3 */
-SELECT PatientSSN, Sum(InsurancePayment) AS SUM
-FROM Admission A, Patient P
-WHERE PatientSSN = P.SSN
-GROUP BY PatientSSN
+SELECT PatientSSN, SUM(InsurancePayment) AS InsurancePay
+FROM Admission
+GROUP BY PatientSSN;
 
 /* Q4 */
 Select SSN, FirstName, LastName, Visits 
@@ -268,7 +267,7 @@ Union
 /* Q5 */
 SELECT SerialNumber
 FROM Equipment
-WHERE SerialNumber = A01-02X
+WHERE SerialNumber = 'A01-02X';
 
 /* Q6 */
 Select EmployeeID, Max(Room)
@@ -281,7 +280,7 @@ Group By EmployeeID;
 /* Q7 */
 SELECT count(EmployeePosition = 0) AS CNT0, count(EmployeePosition = 1) AS CNT1, count(EmployeePosition = 2) AS CNT2
 FROM Employee
-GROUP BY EmployeePosition
+GROUP BY EmployeePosition;
 
 /* Q8 */
 Select SSN, FirstName, LastName, FutureVisit
@@ -293,7 +292,7 @@ From Patient NATURAL JOIN (
 SELECT TypeID, Model, count(TypeID) AS CNT
 FROM EquipmentType
 WHERE CNT > 3
-GROUP BY TypeID, Model
+GROUP BY TypeID, Model;
 
 /* Q10 */
 Select Max(FutureVisit)
@@ -301,13 +300,11 @@ From Admission
 Where PatientSSN = '111-22-3333';
 
 /* Q11 */
-SELECT count(DoctorID) AS CNT
-FROM Examines NATURAL JOIN(
-	SELECT SSN
-	FROM Patient
-	WHERE SSN = "111-22-3333"
-	GROUP BY SSN)
-WHERE CNT > 2
+SELECT DoctorID, count(DoctorID) as ExaminationCount
+FROM Examines , Admission
+WHERE Admission.PatientSSN = '111-22-3333' 
+    AND Examines.AdminID = AdminID
+GROUP BY DoctorID HAVING count(DoctorID) > 2;
 
 /* Q12 */
 Select TypeID
