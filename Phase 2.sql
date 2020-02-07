@@ -211,9 +211,9 @@ INSERT INTO Employee(EmployeeID,FirstName,LastName,JobTitle,Salary,OfficeNumber,
 INSERT INTO Employee(EmployeeID,FirstName,LastName,JobTitle,Salary,OfficeNumber,EmployeePosition,SupervisorID) VALUES('10000','Vicky','Luu','Regular Employee','10000.00','1000','0','20000');
 
 /* Room Access */
-INSERT INTO RoomAccess(RoomNumber,EmployeeID) VALUES('1000s','10000');
-INSERT INTO RoomAccess(RoomNumber,EmployeeID) VALUES('1000s','10000');
-INSERT INTO RoomAccess(RoomNumber,EmployeeID) VALUES('1000s','10000');
+INSERT INTO RoomAccess(RoomNumber,EmployeeID) VALUES('1000','10000');
+INSERT INTO RoomAccess(RoomNumber,EmployeeID) VALUES('1000','10000');
+INSERT INTO RoomAccess(RoomNumber,EmployeeID) VALUES('1000','10000');
 
 /* Examine */
 INSERT INTO Examine(DoctorID,AdminID,Result) VALUES('100','1','Sprained Ankle');
@@ -233,6 +233,9 @@ INSERT INTO StayIn(AdminID,RoomNumber,StartDate,EndDate) VALUES ('1','1000',TO_D
 /* Part 2 - SQL Queries */
 
 /* Q1 */
+SELECT RoomNumber
+FROM Room
+WHERE Occuipied = 1
 
 /* Q2 */
 Select EmployeeID, FirstName, LastName, Salary 
@@ -242,6 +245,10 @@ AND
 JobTitle = 'Regular Employee';
 
 /* Q3 */
+SELECT PatientSSN, Sum(InsurancePayment) AS SUM
+FROM Admission A, Patient P
+WHERE PatientSSN = P.SSN
+GROUP BY PatientSSN
 
 /* Q4 */
 Select SSN, FirstName, LastName, Visits 
@@ -259,6 +266,9 @@ Union
             From Admission)));
 
 /* Q5 */
+SELECT SerialNumber
+FROM Equipment
+WHERE SerialNumber = A01-02X
 
 /* Q6 */
 Select EmployeeID, Max(Room)
@@ -269,6 +279,9 @@ From
 Group By EmployeeID;
 
 /* Q7 */
+SELECT count(EmployeePosition = 0) AS CNT0, count(EmployeePosition = 1) AS CNT1, count(EmployeePosition = 2) AS CNT2
+FROM Employee
+GROUP BY EmployeePosition
 
 /* Q8 */
 Select SSN, FirstName, LastName, FutureVisit
@@ -277,6 +290,10 @@ From Patient NATURAL JOIN (
     From Admission);
 
 /* Q9 */
+SELECT TypeID, Model, count(TypeID) AS CNT
+FROM EquipmentType
+WHERE CNT > 3
+GROUP BY TypeID, Model
 
 /* Q10 */
 Select Max(FutureVisit)
@@ -284,6 +301,13 @@ From Admission
 Where PatientSSN = '111-22-3333';
 
 /* Q11 */
+SELECT count(DoctorID) AS CNT
+FROM Examines NATURAL JOIN(
+	SELECT SSN
+	FROM Patient
+	WHERE SSN = "111-22-3333"
+	GROUP BY SSN)
+WHERE CNT > 2
 
 /* Q12 */
 Select TypeID
@@ -293,5 +317,4 @@ Intersect
     (Select TypeID
     From Equipment
     Where PurchaseYear = TO_DATE('2011', 'yyyy'));
-
 
