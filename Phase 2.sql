@@ -120,35 +120,113 @@ Create Table StaysIn(
 
 /* Patients */
 INSERT INTO Patient(SSN,FirstName,LastName,Address,TelephoneNumber) VALUES('012-34-5678','Ken','Snoddy','100 Institute Road','(123)-456-7890');
+INSERT INTO Patient(SSN,FirstName,LastName,Address,TelephoneNumber) VALUES('012-34-5678','Ken','Snoddy','100 Institute Road','(123)-456-7890');
+INSERT INTO Patient(SSN,FirstName,LastName,Address,TelephoneNumber) VALUES('012-34-5678','Ken','Snoddy','100 Institute Road','(123)-456-7890');
+INSERT INTO Patient(SSN,FirstName,LastName,Address,TelephoneNumber) VALUES('012-34-5678','Ken','Snoddy','100 Institute Road','(123)-456-7890');
+INSERT INTO Patient(SSN,FirstName,LastName,Address,TelephoneNumber) VALUES('012-34-5678','Ken','Snoddy','100 Institute Road','(123)-456-7890');
+INSERT INTO Patient(SSN,FirstName,LastName,Address,TelephoneNumber) VALUES('012-34-5678','Ken','Snoddy','100 Institute Road','(123)-456-7890');
+INSERT INTO Patient(SSN,FirstName,LastName,Address,TelephoneNumber) VALUES('012-34-5678','Ken','Snoddy','100 Institute Road','(123)-456-7890');
+INSERT INTO Patient(SSN,FirstName,LastName,Address,TelephoneNumber) VALUES('012-34-5678','Ken','Snoddy','100 Institute Road','(123)-456-7890');
+INSERT INTO Patient(SSN,FirstName,LastName,Address,TelephoneNumber) VALUES('012-34-5678','Ken','Snoddy','100 Institute Road','(123)-456-7890');
+INSERT INTO Patient(SSN,FirstName,LastName,Address,TelephoneNumber) VALUES('012-34-5678','Ken','Snoddy','100 Institute Road','(123)-456-7890');
 
 /* Doctors */
+INSERT INTO Doctor(DoctorID,FirstName,LastName,Specialty,Gender) VALUES('100','Jessica','Nguyen','General','F');
+INSERT INTO Doctor(DoctorID,FirstName,LastName,Specialty,Gender) VALUES('100','Jessica','Nguyen','General','F');
+INSERT INTO Doctor(DoctorID,FirstName,LastName,Specialty,Gender) VALUES('100','Jessica','Nguyen','General','F');
+INSERT INTO Doctor(DoctorID,FirstName,LastName,Specialty,Gender) VALUES('100','Jessica','Nguyen','General','F');
+INSERT INTO Doctor(DoctorID,FirstName,LastName,Specialty,Gender) VALUES('100','Jessica','Nguyen','General','F');
+INSERT INTO Doctor(DoctorID,FirstName,LastName,Specialty,Gender) VALUES('100','Jessica','Nguyen','General','F');
+INSERT INTO Doctor(DoctorID,FirstName,LastName,Specialty,Gender) VALUES('100','Jessica','Nguyen','General','F');
+INSERT INTO Doctor(DoctorID,FirstName,LastName,Specialty,Gender) VALUES('100','Jessica','Nguyen','General','F');
+INSERT INTO Doctor(DoctorID,FirstName,LastName,Specialty,Gender) VALUES('100','Jessica','Nguyen','General','F');
 INSERT INTO Doctor(DoctorID,FirstName,LastName,Specialty,Gender) VALUES('100','Jessica','Nguyen','General','F');
 
 /* Rooms */
 INSERT INTO Room(RoomNumber,Occupied) VALUES('1000','0');
+INSERT INTO Room(RoomNumber,Occupied) VALUES('1000','0');
+INSERT INTO Room(RoomNumber,Occupied) VALUES('1000','0');
+INSERT INTO Room(RoomNumber,Occupied) VALUES('1000','0');
+INSERT INTO Room(RoomNumber,Occupied) VALUES('1000','0');
+INSERT INTO Room(RoomNumber,Occupied) VALUES('1000','0');
+INSERT INTO Room(RoomNumber,Occupied) VALUES('1000','0');
+INSERT INTO Room(RoomNumber,Occupied) VALUES('1000','0');
+INSERT INTO Room(RoomNumber,Occupied) VALUES('1000','0');
+INSERT INTO Room(RoomNumber,Occupied) VALUES('1000','0');
 
 /* Room Service */
+INSERT INTO RoomServices(RoomNumber,Services) VALUES('1000','MRI');
+INSERT INTO RoomServices(RoomNumber,Services) VALUES('1000','MRI');
+INSERT INTO RoomServices(RoomNumber,Services) VALUES('1000','MRI');
+INSERT INTO RoomServices(RoomNumber,Services) VALUES('1000','MRI');
+INSERT INTO RoomServices(RoomNumber,Services) VALUES('1000','MRI');
 INSERT INTO RoomServices(RoomNumber,Services) VALUES('1000','MRI');
 
 /* Equipment Type */
 INSERT INTO EquipmentType(TypeID,Description,OperationalInstructions,Model) VALUES('10','Precision Knife','Use to make precision cuts.','A01');
+INSERT INTO EquipmentType(TypeID,Description,OperationalInstructions,Model) VALUES('10','Precision Knife','Use to make precision cuts.','A01');
+INSERT INTO EquipmentType(TypeID,Description,OperationalInstructions,Model) VALUES('10','Precision Knife','Use to make precision cuts.','A01');
 
 /* Equipment */
+INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('QRC100',TO_DATE('2010/10/29 18:04:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2000', 'yyyy'),10, 1000);
+INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('QRC100',TO_DATE('2010/10/29 18:04:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2000', 'yyyy'),10, 1000);
+INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('QRC100',TO_DATE('2010/10/29 18:04:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2000', 'yyyy'),10, 1000);
+INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('QRC100',TO_DATE('2010/10/29 18:04:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2000', 'yyyy'),10, 1000);
+INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('QRC100',TO_DATE('2010/10/29 18:04:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2000', 'yyyy'),10, 1000);
+INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('QRC100',TO_DATE('2010/10/29 18:04:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2000', 'yyyy'),10, 1000);
+INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('QRC100',TO_DATE('2010/10/29 18:04:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2000', 'yyyy'),10, 1000);
+INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('QRC100',TO_DATE('2010/10/29 18:04:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2000', 'yyyy'),10, 1000);
 INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('QRC100',TO_DATE('2010/10/29 18:04:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2000', 'yyyy'),10, 1000);
 
 /* Admission */
 INSERT INTO Admission(AdminID,AdminDate,LeaveDate,TotalPayment,InsurancePayment,FutureVisit,PatientSSN) VALUES('1',TO_DATE('2010/10/29 19:05:35', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2010/10/29 19:25:25', 'yyyy/mm/dd hh24:mi:ss'),'2500','1500',TO_DATE('2010/11/29 19:00:00', 'yyyy/mm/dd hh24:mi:ss'),'012-34-5678');
+INSERT INTO Admission(AdminID,AdminDate,LeaveDate,TotalPayment,InsurancePayment,FutureVisit,PatientSSN) VALUES('1',TO_DATE('2010/10/29 19:05:35', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2010/10/29 19:25:25', 'yyyy/mm/dd hh24:mi:ss'),'2500','1500',TO_DATE('2010/11/29 19:00:00', 'yyyy/mm/dd hh24:mi:ss'),'012-34-5678');
+INSERT INTO Admission(AdminID,AdminDate,LeaveDate,TotalPayment,InsurancePayment,FutureVisit,PatientSSN) VALUES('1',TO_DATE('2010/10/29 19:05:35', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2010/10/29 19:25:25', 'yyyy/mm/dd hh24:mi:ss'),'2500','1500',TO_DATE('2010/11/29 19:00:00', 'yyyy/mm/dd hh24:mi:ss'),'012-34-5678');
+INSERT INTO Admission(AdminID,AdminDate,LeaveDate,TotalPayment,InsurancePayment,FutureVisit,PatientSSN) VALUES('1',TO_DATE('2010/10/29 19:05:35', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2010/10/29 19:25:25', 'yyyy/mm/dd hh24:mi:ss'),'2500','1500',TO_DATE('2010/11/29 19:00:00', 'yyyy/mm/dd hh24:mi:ss'),'012-34-5678');
+INSERT INTO Admission(AdminID,AdminDate,LeaveDate,TotalPayment,InsurancePayment,FutureVisit,PatientSSN) VALUES('1',TO_DATE('2010/10/29 19:05:35', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2010/10/29 19:25:25', 'yyyy/mm/dd hh24:mi:ss'),'2500','1500',TO_DATE('2010/11/29 19:00:00', 'yyyy/mm/dd hh24:mi:ss'),'012-34-5678');
+INSERT INTO Admission(AdminID,AdminDate,LeaveDate,TotalPayment,InsurancePayment,FutureVisit,PatientSSN) VALUES('1',TO_DATE('2010/10/29 19:05:35', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2010/10/29 19:25:25', 'yyyy/mm/dd hh24:mi:ss'),'2500','1500',TO_DATE('2010/11/29 19:00:00', 'yyyy/mm/dd hh24:mi:ss'),'012-34-5678');
+INSERT INTO Admission(AdminID,AdminDate,LeaveDate,TotalPayment,InsurancePayment,FutureVisit,PatientSSN) VALUES('1',TO_DATE('2010/10/29 19:05:35', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2010/10/29 19:25:25', 'yyyy/mm/dd hh24:mi:ss'),'2500','1500',TO_DATE('2010/11/29 19:00:00', 'yyyy/mm/dd hh24:mi:ss'),'012-34-5678');
+INSERT INTO Admission(AdminID,AdminDate,LeaveDate,TotalPayment,InsurancePayment,FutureVisit,PatientSSN) VALUES('1',TO_DATE('2010/10/29 19:05:35', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2010/10/29 19:25:25', 'yyyy/mm/dd hh24:mi:ss'),'2500','1500',TO_DATE('2010/11/29 19:00:00', 'yyyy/mm/dd hh24:mi:ss'),'012-34-5678');
+INSERT INTO Admission(AdminID,AdminDate,LeaveDate,TotalPayment,InsurancePayment,FutureVisit,PatientSSN) VALUES('1',TO_DATE('2010/10/29 19:05:35', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2010/10/29 19:25:25', 'yyyy/mm/dd hh24:mi:ss'),'2500','1500',TO_DATE('2010/11/29 19:00:00', 'yyyy/mm/dd hh24:mi:ss'),'012-34-5678');
+INSERT INTO Admission(AdminID,AdminDate,LeaveDate,TotalPayment,InsurancePayment,FutureVisit,PatientSSN) VALUES('1',TO_DATE('2010/10/29 19:05:35', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2010/10/29 19:25:25', 'yyyy/mm/dd hh24:mi:ss'),'2500','1500',TO_DATE('2010/11/29 19:00:00', 'yyyy/mm/dd hh24:mi:ss'),'012-34-5678');
 
 /* Employee */
+INSERT INTO Employee(EmployeeID,FirstName,LastName,JobTitle,Salary,OfficeNumber,EmployeePosition,SupervisorID) VALUES('10000','Vicky','Luu','Regular Employee','10000.00','1000','0','20000');
+INSERT INTO Employee(EmployeeID,FirstName,LastName,JobTitle,Salary,OfficeNumber,EmployeePosition,SupervisorID) VALUES('10000','Vicky','Luu','Regular Employee','10000.00','1000','0','20000');
+INSERT INTO Employee(EmployeeID,FirstName,LastName,JobTitle,Salary,OfficeNumber,EmployeePosition,SupervisorID) VALUES('10000','Vicky','Luu','Regular Employee','10000.00','1000','0','20000');
+INSERT INTO Employee(EmployeeID,FirstName,LastName,JobTitle,Salary,OfficeNumber,EmployeePosition,SupervisorID) VALUES('10000','Vicky','Luu','Regular Employee','10000.00','1000','0','20000');
+INSERT INTO Employee(EmployeeID,FirstName,LastName,JobTitle,Salary,OfficeNumber,EmployeePosition,SupervisorID) VALUES('10000','Vicky','Luu','Regular Employee','10000.00','1000','0','20000');
+INSERT INTO Employee(EmployeeID,FirstName,LastName,JobTitle,Salary,OfficeNumber,EmployeePosition,SupervisorID) VALUES('10000','Vicky','Luu','Regular Employee','10000.00','1000','0','20000');
+INSERT INTO Employee(EmployeeID,FirstName,LastName,JobTitle,Salary,OfficeNumber,EmployeePosition,SupervisorID) VALUES('10000','Vicky','Luu','Regular Employee','10000.00','1000','0','20000');
+INSERT INTO Employee(EmployeeID,FirstName,LastName,JobTitle,Salary,OfficeNumber,EmployeePosition,SupervisorID) VALUES('10000','Vicky','Luu','Regular Employee','10000.00','1000','0','20000');
+INSERT INTO Employee(EmployeeID,FirstName,LastName,JobTitle,Salary,OfficeNumber,EmployeePosition,SupervisorID) VALUES('10000','Vicky','Luu','Regular Employee','10000.00','1000','0','20000');
+INSERT INTO Employee(EmployeeID,FirstName,LastName,JobTitle,Salary,OfficeNumber,EmployeePosition,SupervisorID) VALUES('10000','Vicky','Luu','Regular Employee','10000.00','1000','0','20000');
+
+INSERT INTO Employee(EmployeeID,FirstName,LastName,JobTitle,Salary,OfficeNumber,EmployeePosition,SupervisorID) VALUES('10000','Vicky','Luu','Regular Employee','10000.00','1000','0','20000');
+INSERT INTO Employee(EmployeeID,FirstName,LastName,JobTitle,Salary,OfficeNumber,EmployeePosition,SupervisorID) VALUES('10000','Vicky','Luu','Regular Employee','10000.00','1000','0','20000');
+INSERT INTO Employee(EmployeeID,FirstName,LastName,JobTitle,Salary,OfficeNumber,EmployeePosition,SupervisorID) VALUES('10000','Vicky','Luu','Regular Employee','10000.00','1000','0','20000');
+INSERT INTO Employee(EmployeeID,FirstName,LastName,JobTitle,Salary,OfficeNumber,EmployeePosition,SupervisorID) VALUES('10000','Vicky','Luu','Regular Employee','10000.00','1000','0','20000');
+
+INSERT INTO Employee(EmployeeID,FirstName,LastName,JobTitle,Salary,OfficeNumber,EmployeePosition,SupervisorID) VALUES('10000','Vicky','Luu','Regular Employee','10000.00','1000','0','20000');
 INSERT INTO Employee(EmployeeID,FirstName,LastName,JobTitle,Salary,OfficeNumber,EmployeePosition,SupervisorID) VALUES('10000','Vicky','Luu','Regular Employee','10000.00','1000','0','20000');
 
 /* Room Access */
 INSERT INTO RoomAccess(RoomNumber,EmployeeID) VALUES('1000s','10000');
+INSERT INTO RoomAccess(RoomNumber,EmployeeID) VALUES('1000s','10000');
+INSERT INTO RoomAccess(RoomNumber,EmployeeID) VALUES('1000s','10000');
 
 /* Examine */
 INSERT INTO Examine(DoctorID,AdminID,Result) VALUES('100','1','Sprained Ankle');
+INSERT INTO Examine(DoctorID,AdminID,Result) VALUES('100','1','Sprained Ankle');
+INSERT INTO Examine(DoctorID,AdminID,Result) VALUES('100','1','Sprained Ankle');
+INSERT INTO Examine(DoctorID,AdminID,Result) VALUES('100','1','Sprained Ankle');
+INSERT INTO Examine(DoctorID,AdminID,Result) VALUES('100','1','Sprained Ankle');
 
 /* Stays In */
+INSERT INTO StayIn(AdminID,RoomNumber,StartDate,EndDate) VALUES ('1','1000',TO_DATE('2010/10/29 19:05:35', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2010/10/29 19:25:25', 'yyyy/mm/dd hh24:mi:ss'));
+INSERT INTO StayIn(AdminID,RoomNumber,StartDate,EndDate) VALUES ('1','1000',TO_DATE('2010/10/29 19:05:35', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2010/10/29 19:25:25', 'yyyy/mm/dd hh24:mi:ss'));
+INSERT INTO StayIn(AdminID,RoomNumber,StartDate,EndDate) VALUES ('1','1000',TO_DATE('2010/10/29 19:05:35', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2010/10/29 19:25:25', 'yyyy/mm/dd hh24:mi:ss'));
+INSERT INTO StayIn(AdminID,RoomNumber,StartDate,EndDate) VALUES ('1','1000',TO_DATE('2010/10/29 19:05:35', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2010/10/29 19:25:25', 'yyyy/mm/dd hh24:mi:ss'));
 INSERT INTO StayIn(AdminID,RoomNumber,StartDate,EndDate) VALUES ('1','1000',TO_DATE('2010/10/29 19:05:35', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2010/10/29 19:25:25', 'yyyy/mm/dd hh24:mi:ss'));
 
 
