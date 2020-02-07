@@ -120,7 +120,7 @@ Create Table StaysIn(
 /* Part 3 - Populate The Database */
 
 /* Patients */
-INSERT INTO Patient(SSN,FirstName,LastName,Address,TelephoneNumber) VALUES('012-34-5678','Ken','Snoddy','100 Institute Road','(123)-456-7890');
+INSERT INTO Patient(SSN,FirstName,LastName,Address,TelephoneNumber) VALUES('111-22-3333','Ken','Snoddy','100 Institute Road','(123)-456-7890');
 INSERT INTO Patient(SSN,FirstName,LastName,Address,TelephoneNumber) VALUES('123-45-6789','Chris','Lee','101 Institute Road','(111)-111-1111');
 INSERT INTO Patient(SSN,FirstName,LastName,Address,TelephoneNumber) VALUES('234-56-7890','Luna','Kim','102 Institute Road','(222)-222-2222');
 INSERT INTO Patient(SSN,FirstName,LastName,Address,TelephoneNumber) VALUES('857-21-6666','Trang','Park','103 Institute Road','(333)-333-3333');
@@ -169,15 +169,15 @@ INSERT INTO EquipmentType(TypeID,Description,OperationalInstructions,Model) VALU
 INSERT INTO EquipmentType(TypeID,Description,OperationalInstructions,Model) VALUES('12','Surgical Scissors','Use to cut body parts.','A03');
 
 /* Equipment */
-INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('QRC100',TO_DATE('2010/10/29 18:06:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2000', 'yyyy'),10, 1000);
-INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('QRC101',TO_DATE('2010/10/30 21:04:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2000', 'yyyy'),10, 1001);
-INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('QRC102',TO_DATE('2010/11/09 20:04:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2000', 'yyyy'),10, 1002);
-INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('QRC103',TO_DATE('2010/10/31 08:04:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2000', 'yyyy'),11, 1003);
-INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('QRC104',TO_DATE('2010/11/30 18:34:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2000', 'yyyy'),11, 1004);
-INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('QRC105',TO_DATE('2010/12/29 18:04:44', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2000', 'yyyy'),11, 1005);
-INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('QRC106',TO_DATE('2009/10/29 18:04:35', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2000', 'yyyy'),12, 1006);
-INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('QRC107',TO_DATE('2008/11/29 18:05:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2000', 'yyyy'),12, 1007);
-INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('QRC108',TO_DATE('2008/10/30 19:04:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2000', 'yyyy'),12, 1008);
+INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('A01-02X',TO_DATE('2010/10/29 18:06:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2005', 'yyyy'),10, 1000);
+INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('A01-03X',TO_DATE('2010/10/30 21:04:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2010', 'yyyy'),10, 1001);
+INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('A01-04X',TO_DATE('2010/11/09 20:04:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2003', 'yyyy'),10, 1002);
+INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('A01-05X',TO_DATE('2015/10/31 08:04:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2011', 'yyyy'),11, 1003);
+INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('A01-06X',TO_DATE('2010/11/30 18:34:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2010', 'yyyy'),11, 1004);
+INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('A01-07X',TO_DATE('2017/12/29 18:04:44', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2011', 'yyyy'),11, 1005);
+INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('A01-08X',TO_DATE('2009/10/29 18:04:35', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2004', 'yyyy'),12, 1006);
+INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('A01-09X',TO_DATE('2008/11/29 18:05:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2002', 'yyyy'),12, 1007);
+INSERT INTO Equipment(SerialNumber,LastInspection, YearofPurchase, TypeID, RoomNumber) VALUES('A01-10X',TO_DATE('2008/10/30 19:04:34', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2001', 'yyyy'),12, 1008);
 
 /* Admission */
 INSERT INTO Admission(AdminID,AdminDate,LeaveDate,TotalPayment,InsurancePayment,FutureVisit,PatientSSN) VALUES('1',TO_DATE('2010/10/29 19:05:35', 'yyyy/mm/dd hh24:mi:ss'),TO_DATE('2010/10/29 19:25:25', 'yyyy/mm/dd hh24:mi:ss'),'2500','1500',TO_DATE('2011/11/29 19:00:00', 'yyyy/mm/dd hh24:mi:ss'),'111-11-1111');
@@ -232,24 +232,24 @@ INSERT INTO StaysIn(AdminID,RoomNumber,StartDate,EndDate) VALUES ('5','1004',TO_
 
 /* Part 2 - SQL Queries */
 
-/* Q1 */
+/* Q1 Report the hospital rooms (the room number) that are currently occupied */
 SELECT RoomNumber
 FROM Room
 WHERE Occuipied = 1;
 
-/* Q2 */
+/* Q2 For a given division manager, report all regular employees that are supervised by this manager. Display the employees ID, names, and salary */
 Select EmployeeID, FirstName, LastName, Salary 
 From Employee 
 Where SupervisorID = 10 
 AND 
 JobTitle = 'Regular Employee';
 
-/* Q3 */
+/* Q3 For each patient, report the sum of amounts paid by the insurance company for that patient */
 SELECT PatientSSN, SUM(InsurancePayment) AS InsurancePay
 FROM Admission
 GROUP BY PatientSSN;
 
-/* Q4 */
+/* Q4 Report the number of visits done for each patient */
 Select SSN, FirstName, LastName, Visits 
 From Patient NATURAL JOIN (                        
     Select PatientSSN AS SSN, Count(*) AS Visits 
@@ -264,12 +264,12 @@ Union
             Select PatientSSN AS SSN, 0 AS Visits 
             From Admission)));
 
-/* Q5 */
+/* Q5 Report the room number that has an equipment unit with serial number AX01-02X */
 SELECT SerialNumber
 FROM Equipment
 WHERE SerialNumber = 'A01-02X';
 
-/* Q6 */
+/* Q6 Report the employee woh has access to the largest number of rooms. We need the employee ID, and the number of rooms he can access */
 Select EmployeeID, Max(Room)
 From
     (Select EmployeeID, Count(RoomNumber) AS Room
@@ -277,36 +277,36 @@ From
     Group By EmployeeID)
 Group By EmployeeID;
 
-/* Q7 */
+/* Q7 Report the number of reguar employees, division managers, and general managers at the hospital */
 SELECT count(EmployeePosition = 0) AS CNT0, count(EmployeePosition = 1) AS CNT1, count(EmployeePosition = 2) AS CNT2
 FROM Employee
 GROUP BY EmployeePosition;
 
-/* Q8 */
+/* Q8 For patients who have a scheduled future visit, report that patient (SSN, First/Last Name) and the visit date */
 Select SSN, FirstName, LastName, FutureVisit
 From Patient NATURAL JOIN (
     Select PatientSSN as SSN, FutureVisit
     From Admission);
 
-/* Q9 */
+/* Q9 For each equipment type that has more than 3 units, report the equipment type ID, model, and the number of units the type has */
 SELECT TypeID, Model, count(TypeID) AS CNT
 FROM EquipmentType
 WHERE CNT > 3
 GROUP BY TypeID, Model;
 
-/* Q10 */
+/* Q10 Report the date of the coming future visit for patient with SSN 111-22-3333 */
 Select Max(FutureVisit)
 From Admission
 Where PatientSSN = '111-22-3333';
 
-/* Q11 */
+/* Q11 For patient with SSN 111-22-3333, report the doctors woh have examined this patient more than 2 times */
 SELECT DoctorID, count(DoctorID) as ExaminationCount
 FROM Examines , Admission
 WHERE Admission.PatientSSN = '111-22-3333' 
     AND Examines.AdminID = AdminID
 GROUP BY DoctorID HAVING count(DoctorID) > 2;
 
-/* Q12 */
+/* Q12 Report the equipment types for which the hospital has purchased  */
 Select TypeID
 From Equipment
 Where PurchaseYear = TO_DATE('2010', 'yyyy')
