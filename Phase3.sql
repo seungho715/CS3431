@@ -166,10 +166,10 @@ INSERT INTO Room VALUES(1009,'T');
 
 /* Room Service */
 INSERT INTO RoomServices VALUES(1001,'MRI');
-INSERT INTO RoomServices VALUES(1003,'MRI');
+INSERT INTO RoomServices VALUES(1001,'Checkup');
 INSERT INTO RoomServices VALUES(1002,'Surgery');
-INSERT INTO RoomServices VALUES(1004,'Surgery');
-INSERT INTO RoomServices VALUES(1005,'X-ray');
+INSERT INTO RoomServices VALUES(1002,'Back');
+INSERT INTO RoomServices VALUES(1006,'Head');
 INSERT INTO RoomServices VALUES(1006,'X-ray');
 
 /* Room Access */
