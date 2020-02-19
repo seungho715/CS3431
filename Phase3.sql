@@ -181,3 +181,114 @@ Where C.PatientSSN = A.PatientSSN
     D.load = 'Underloaded';
 
 /* Part 2 - Databases Triggers */
+/* DROP TRIGGER LASTQUESTION; */
+DROP TRIGGER CalculateInsurance;
+DROP TRIGGER CheckDivManagers;
+DROP TRIGGER CheckGenManagers;
+DROP TRIGGER CheckFutureDate;
+DROP TRIGGER CheckEquipmentType;
+/*DROP TRIGGER LASTQUESTION; */
+
+/* If a doctor visits the ICU, they must leave a comment */
+
+
+/* The insurance payment should be calculated automatically as 65% of the the total 
+payment. If the total payment changes then the insurance amount should also change. */
+CREATE OR REPLACE TRIGGER CalculateInsurance
+BEFORE INSERT OR UPDATE
+ON Admission
+FOR EACH ROW
+BEGIN
+:new.InsurancePayment := :new.TotalPayment * 0.65;
+END;
+/
+Show errors;
+
+/* Ensure that regular employees (with rank 0) must have their supervisors as 
+division managers (with rank 1). Also each regular employee must have a supervisor at all times */
+CREATE OR REPLACE TRIGGER CheckDivManagers
+BEFORE INSERT OR UPDATE 
+ON Employee
+FOR EACH ROW
+WHEN (new.EmployeePosition = 0)
+DECLARE
+   ManagerRank NUMBER := 1;
+BEGIN 
+    Select EmployeePosition INTO ManagerRank FROM Employee WHERE ID = :new.SupervisorID;
+    IF(ManagerRank != 1) THEN
+	RAISE_APPLICATION_ERROR(-20004, 'Employee of Rank 0 must have Supervisor of Rank 1');
+	END IF;
+END;
+/
+Show errors;
+
+/* Similarly, division managers (with rank 1) must have their supervisors as general 
+managers (with rank 2). Division managers must have supervisors at all times. General Managers must not have any supervisors. */
+CREATE OR REPLACE TRIGGER CheckGenManagers
+BEFORE INSERT OR UPDATE 
+ON Employee
+FOR EACH ROW
+WHEN (new.EmployeePosition = 1)
+DECLARE
+   ManagerRank NUMBER := 2;
+BEGIN 
+    Select EmployeePosition INTO ManagerRank FROM Employee WHERE ID = :new.SupervisorID;
+    IF(ManagerRank != 2) THEN
+	RAISE_APPLICATION_ERROR(-20004, 'Employee of Rank 1 must have Supervisor of Rank 2');
+	END IF;
+END;
+/
+Show errors;
+
+/* When a patient is admitted to an Emergency Room (a room with an Emergency
+service) on date D, the futureVisitDate should be automatically set to 2 months
+after that date, i.e., D + 2 months. The futureVisitDate may be manually changed
+later, but when the Emergency Room admission happens, the date should be set
+to default as mentioned above. */
+CREATE OR REPLACE TRIGGER CheckFutureDate
+BEFORE INSERT 
+ON Admission
+FOR EACH ROW
+DECLARE
+	RoomType VARCHAR(30);
+BEGIN
+	Select Service INTO RoomType 
+    From Patient NATURAL JOIN ( 
+        Select PatientSSN AS SSN, Service
+        From Admission NATURAL JOIN ( 
+            Select AdminID AS ANum,Service  
+            From StaysIn NATURAL JOIN ( 
+                Select RoomNumber,Service 
+                From RoomServices 
+                Where Service = 'Emergency')) 
+        Group By PatientSSN)
+		Where :old.PatientSSN = :new.PatientSSN;
+IF(RoomType='Emergency')THEN
+:new.FutureDate:= :new.AdminDate + INTERVAL '2' Month;
+END IF;
+END;
+/
+Show errors;
+
+/* If a piece of equipment is of type ‘CT Scanner’ or ‘Ultrasound’, then the purchase
+year must be not null and after 2006. */
+CREATE OR REPLACE TRIGGER CheckEquipmentType
+BEFORE INSERT OR UPDATE 
+ON Equipment 
+FOR EACH ROW
+DECLARE
+	EqType CHAR(20);
+BEGIN
+SELECT EquipmentType.Description INTO EqType FROM
+Equipment NATURAL JOIN EquipmentType
+Where Equipment.PurchaseYear > TO_DATE('2006', 'yyyy');
+IF (eqType = 'CT Scanner' OR eqType = 'Ultrasound') THEN
+RAISE_APPLICATION_ERROR(-300,'CT Scanner or Ultrasound can not be purchased after 2006 or null');
+END IF;
+END;
+/
+Show errors;
+
+/* When a patient leaves the hospital (Admission leave time is set), print out the
+patient’s first and last name, address, all of the comments from doctors involved
+in that admission, and which doctor (name) left each comment. */
