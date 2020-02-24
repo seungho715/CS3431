@@ -237,7 +237,6 @@ INSERT INTO Admission VALUES(10,TO_DATE('2010/10/29 21:35:35', 'yyyy/mm/dd hh24:
 
 /* Drop Views and Triggers */
 DROP VIEW CriticalCases;
-DROP VIEW DoctorsLoad;
 
 /* Part 1 - Database Views */
 GO
