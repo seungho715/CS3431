@@ -260,14 +260,14 @@ GO
 CREATE VIEW DoctorsLoad AS    
     Select ID as DoctorID, Gender, 'Overloaded' AS load
     From Doctor NATURAL JOIN(
-        Select DoctorID AS ID, Count(AdminID) AS LoadNum
+        Select DoctorID AS ID, Count(AdmissionAdminID) AS LoadNum
         From Examines
         Group By DoctorID)
     Where Loadnum > 10
     Union
         (Select ID as DoctorID, Gender, 'Underloaded' AS load
         From Doctor NATURAL JOIN(
-            Select DoctorID AS ID, Count(AdmissionNum) AS LoadNum
+            Select DoctorID AS ID, Count(AdmissionAdminID) AS LoadNum
             From Examines
             Group By DoctorID)
         Where Loadnum <= 10);
@@ -278,33 +278,25 @@ Select *
 From CriticalCases
 Where numberOfAdmissionsToICU > 4;
 
-Select DoctorID, FirstName, LastName
+Select D.DoctorID, D.FirstName, D.LastName
 From Doctor D, DoctorsLoad L
-Where D.ID = L.DoctorID
+Where D.DoctorID = L.DoctorID
     AND
     D.Gender = 'F'
     AND
     L.load = 'Overloaded';
 
-Select D.DoctorID, C.PatientSSN, Results
-From CriticalCases C, Admission A, Examine E, DoctorsLoad D
+Select D.DoctorID, C.PatientSSN, Result
+From CriticalCases C, Admission A, Examines E, DoctorsLoad D
 Where C.PatientSSN = A.PatientSSN
     AND
-    A.ANum = E.AdminID
+    A.AdminID = E.AdmissionAdminID
     AND
     E.DoctorID = D.DoctorID
     AND
     D.load = 'Underloaded';
 
-
 /* Part 2 - Databases Triggers */
-DROP TRIGGER DoctorVisits;
-DROP TRIGGER CalculateInsurance;
-DROP TRIGGER CheckDivManagers;
-DROP TRIGGER CheckGenManagers;
-DROP TRIGGER CheckFutureDate;
-DROP TRIGGER CheckEquipmentType;
-DROP TRIGGER PatientUpdate;
 
 /* If a doctor visits the ICU, they must leave a comment */
 CREATE OR REPLACE TRIGGER DoctorVisits
@@ -327,7 +319,6 @@ BEGIN
 END;
 /
 show errors;
-
 
 /* The insurance payment should be calculated automatically as 65% of the the total 
 payment. If the total payment changes then the insurance amount should also change. */
@@ -461,6 +452,7 @@ BEGIN
 END;
 /
 show errors;
+
 
 
 	
