@@ -304,7 +304,6 @@ DROP TRIGGER CheckDivManagers;
 DROP TRIGGER CheckGenManagers;
 DROP TRIGGER CheckFutureDate;
 DROP TRIGGER CheckEquipmentType;
-DROP TRIGGER PatientLeavesHospital;
 DROP TRIGGER PatientUpdate;
 
 /* If a doctor visits the ICU, they must leave a comment */
@@ -430,41 +429,6 @@ Show errors;
 /* When a patient leaves the hospital (Admission leave time is set), print out the
 patient’s first and last name, address, all of the comments from doctors involved
 in that admission, and which doctor (name) left each comment. */
-CREATE OR REPLACE TRIGGER PatientLeavesHospital
-AFTER INSERT OR UPDATE ON Admission
-For Each Row
-  DECLARE
-    CURSOR cur_list IS
-      SELECT d.FirstName, d.LastName, e.Results
-      FROM Doctor d, Examines e
-      WHERE e.DoctorID = d.DoctorID AND e.AdmissionAdminID = AdminID;
-
-    curChoice cur_list%ROWTYPE;
-    fName varchar2(30);
-    lName varchar2(30);
-    address varchar2(50);
-  BEGIN
-
-  SELECT p.FirstName INTO fName, p.LastName INTO lName, p.Address INTO address
-  FROM Patient p
-  WHERE :old.p.SSN = SSN;
-
-  OPEN cur_list;
-  LOOP
-    FETCH cur_list INTO curChoice;
-    EXIT WHEN cur_list%NOTFOUND;
-    dbms_output.put_line(fName);
-    dbms_output.put_line(lName);
-    dbms_output.put_line(address);
-    dbms_output.put_line(curChoice.FirstName);
-    dbms_output.put_line(curChoice.LastName);
-    dbms_output.put_line(curChoice.Results);
-  END LOOP;
-  CLOSE cur_list;
-END;
-/
-show errors;
-
 CREATE OR REPLACE TRIGGER PatientUpdate
 AFTER INSERT OR UPDATE ON Admission
 For Each Row
@@ -479,7 +443,7 @@ d_lname varchar2(20);
 comments varchar2(20);
 BEGIN
 	SELECT FirstName, LastName, Address
-	INTO p_fname. p_lname, p_Address
+	INTO p_fname, p_lname, p_Address
 	FROM Patient
 	WHERE :old.PatientSSN = SSN;
 	FOR rec in C1 loop
@@ -488,7 +452,7 @@ BEGIN
 		FROM Doctor
 		WHERE rec.DoctorID = DoctorID;
 		
-		SELECT Results
+		SELECT Result
 		INTO comments
 		FROM Examines
 		WHERE rec.DoctorID = DoctorID;
