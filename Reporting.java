@@ -5,7 +5,7 @@ import java.sql.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Reporting {
+public class part3 {
     public static void main(String[] argv){
         int numArgs = argv.length;
 
@@ -35,11 +35,11 @@ public class Reporting {
                     Pattern pat = Pattern.compile(regex);
                     String patSSN = null;
 
-                    tries = 5;
+                    tries = 3;
 
                     while(tries > 0)
                     {
-                        System.out.println("Enter Patient SSN (Example: 000-000-0000): ");
+                        System.out.println("Enter Patient SSN (Example: 000-00-0000): ");
                         patSSN = s.nextLine();
 
                         Matcher m = pat.matcher(patSSN);
@@ -73,7 +73,7 @@ public class Reporting {
 
                 case 2:
                     String docID = null;
-                    tries = 5;
+                    tries = 3;
 
                     while(tries >0)
                     {
@@ -107,7 +107,7 @@ public class Reporting {
                     break;
                 case 3:
                     String adminNum = null;
-                    tries = 5;
+                    tries = 3;
 
                     while(tries > 0)
                     {
@@ -142,7 +142,7 @@ public class Reporting {
 
                 case 4:
                     String mAdminNum = null;
-                    tries = 5;
+                    tries = 3;
 
                     while(tries > 0)
                     {
@@ -166,7 +166,7 @@ public class Reporting {
                     }
 
                     String newTotalPayment = null;
-                    tries = 5;
+                    tries = 3;
 
                     while(tries > 0)
                     {
@@ -222,17 +222,15 @@ public class Reporting {
 
     private static void reportPatientBasicInfo(Connection c, String ssn){
         try{
-            Statement stmt = c.createStatement(); // Empty statement object
-            String result = ("SELECT * \n" +
-                    "FROM Patient \n" +
-                    "WHERE ssn = " + "'" + ssn + "'");
-            ResultSet rset = stmt.executeQuery(result);
+            PreparedStatement stmt = c.prepareStatement("SELECT * FROM Patient Where ssn=?"); // Empty statement object
+            stmt.setString(1,ssn);
+            ResultSet rset = stmt.executeQuery();
 
             String mSsn = "";
             String firstName = "";
             String lastName = "";
             String address = "";
-
+/*
             //The query did not find any results
             if(!rset.isBeforeFirst()){
                 System.out.println("That query did not return any results!");
@@ -244,14 +242,14 @@ public class Reporting {
 
                 System.exit(1);
             }
-
+*/
             // Process the results
             while (rset.next()) { // Runs through results row by row
                 // Sets column names and assigns values to them
-                mSsn = rset.getString("ssn");
-                firstName = rset.getString("first_name");
-                lastName = rset.getString("last_name");
-                address = rset.getString("address");
+                mSsn = rset.getString("SSN");
+                firstName = rset.getString("FirstName");
+                lastName = rset.getString("LastName");
+                address = rset.getString("Address");
 
                 if(!mSsn.equals(ssn)){
                     System.out.println("Problem with database... Exiting.");
@@ -280,17 +278,15 @@ public class Reporting {
 
     private static void reportDocBasicInfo(Connection c, int doctorId){
         try{
-            Statement stmt = c.createStatement(); // Empty statement object
-            String result = ("SELECT * \n" +
-                    "FROM Doctor \n" +
-                    "WHERE id = " + "'" + doctorId + "'");
-            ResultSet rset = stmt.executeQuery(result);
+            PreparedStatement stmt = c.prepareStatement("SELECT *  FROM Doctor WHERE DoctorID=?"); // Empty statement object
+            stmt.setInt(1,doctorId);
+            ResultSet rset = stmt.executeQuery();
 
             int mDoctorId = -1;
             String firstName = "";
             String lastName = "";
             String gender = "";
-
+/*
             //The query did not find any results
             if(!rset.isBeforeFirst()){
                 System.out.println("That query did not return any results!");
@@ -301,14 +297,13 @@ public class Reporting {
                 c.close();
 
                 System.exit(1);
-            }
-
+            }*/
             // Process the results
             while (rset.next()) { // Runs through results row by row
-                mDoctorId = rset.getInt("id");
-                firstName = rset.getString("first_name");
-                lastName = rset.getString("last_name");
-                gender = rset.getString("gender");
+                mDoctorId = rset.getInt("DoctorID");
+                firstName = rset.getString("FirstName");
+                lastName = rset.getString("LastName");
+                gender = rset.getString("Gender");
 
                 if(mDoctorId != doctorId){
                     System.out.println("Problem with database... Exiting.");
@@ -331,11 +326,12 @@ public class Reporting {
         }catch (SQLException e){
             System.out.println("Failed to communicate with database... Exiting.");
             e.printStackTrace();
+            /*
             try {
                 c.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-            }
+            }*/
             System.exit(-1);
         }
     }
@@ -343,13 +339,10 @@ public class Reporting {
     private static void reportAdminInfo(Connection c, int admissionId){
         try{
             //-----First Part of Query
-            Statement stmt = c.createStatement(); // Empty statement object
-            String results = ("SELECT * \n" +
-                    "FROM Admission \n" +
-                    "WHERE id = " + "'" + admissionId + "'");
-
-            ResultSet rset = stmt.executeQuery(results);
-
+            PreparedStatement stmt = c.prepareStatement("SELECT * FROM Admission WHERE AdminID=?"); // Empty statement object
+            stmt.setInt(1,admissionId);
+            ResultSet rset = stmt.executeQuery();
+/*
             //The query did not find any results
             if(!rset.isBeforeFirst()){
                 System.out.println("That query 1 did not return any results!");
@@ -360,7 +353,7 @@ public class Reporting {
                 c.close();
 
                 System.exit(1);
-            }
+            }*/
 
             // Initialize Columns
             String patient = "";
@@ -369,18 +362,16 @@ public class Reporting {
 
             // Process the results for first query
             while (rset.next()) { // Runs through results row by row
-                patient = rset.getString("patient");
-                admissionDate = rset.getString("check_in");
-                totalPayment = rset.getInt("cost");
+                patient = rset.getString("PatientSSN");
+                admissionDate = rset.getString("AdminDate");
+                totalPayment = rset.getInt("TotalPayment");
             }
 
             //-----Second Part of Query
-            stmt = c.createStatement(); // Empty statement object
-            results = ("SELECT * \n" +
-                    "FROM RoomStay \n" +
-                    "WHERE admission_id = " + "'" + admissionId + "'");
-            rset = stmt.executeQuery(results);
-
+            stmt = c.prepareStatement("SELECT * FROM StaysIn WHERE AdmissionAdminID=?"); // Empty statement object
+            stmt.setInt(1,admissionId);
+            rset = stmt.executeQuery();
+/*
             //The query did not find any results
             if(!rset.isBeforeFirst()){
                 System.out.println("That query 2 did not return any results!");
@@ -391,7 +382,7 @@ public class Reporting {
                 c.close();
 
                 System.exit(1);
-            }
+            }*/
 
             // Initialize Columns
             int roomNum = -1;
@@ -403,21 +394,19 @@ public class Reporting {
 
             // Process the results for first query
             while (rset.next()) { // Runs through results row by row
-                roomNum = rset.getInt("room_num");
-                startTime = rset.getString("start_time");
-                endTime = rset.getString("end_time");
+                roomNum = rset.getInt("RoomNumber");
+                startTime = rset.getString("StartDate");
+                endTime = rset.getString("EndDate");
 
                 rooms += "\tRoomNum: " + roomNum + "\tFromDate: " + startTime + "\tToDate: " + endTime + "\n";
             }
 
 
             //-----Third Part of Query
-            stmt = c.createStatement(); // Empty statement object
-            results = ("SELECT DISTINCT doctor_id \n" +
-                    "FROM Examination \n" +
-                    "WHERE admission_id = " + "'" + admissionId + "'");
-            rset = stmt.executeQuery(results);
-
+            stmt = c.prepareStatement("SELECT DoctorID FROM Examines WHERE AdmissionAdminID=?"); // Empty statement object
+            stmt.setInt(1,admissionId);
+            rset = stmt.executeQuery();
+/*
             //The query did not find any results
             if(!rset.isBeforeFirst()){
                 System.out.println("That query 3 did not return any results!");
@@ -428,7 +417,7 @@ public class Reporting {
                 c.close();
 
                 System.exit(1);
-            }
+            }*/
 
             // Initialize Columns
             int doctorId = -1;
@@ -438,7 +427,7 @@ public class Reporting {
 
             // Process the results for first query
             while (rset.next()) { // Runs through results row by row
-                doctorId = rset.getInt("doctor_id");
+                doctorId = rset.getInt("DoctorID");
                 doctors += "\tDoctor ID: " + doctorId + "\n";
             }
 
@@ -461,12 +450,12 @@ public class Reporting {
         }catch (SQLException e){
             System.out.println("Failed to communicate with database... Exiting.");
             e.printStackTrace();
-
+/*
             try {
                 c.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-            }
+            }*/
 
             System.exit(-1);
         }
@@ -474,11 +463,10 @@ public class Reporting {
 
     private static void updateAdminPayment(Connection c, int admissionId, int newPaymentTotal){
         try{
-            Statement stmt = c.createStatement(); // Empty statement object
-            String result = ("Update Admission \n" +
-                    "SET cost=" + newPaymentTotal + "\n" +
-                    "WHERE id = " + "'" + admissionId + "'");
-            int count = stmt.executeUpdate(result);
+            PreparedStatement stmt = c.prepareStatement("Update Admission SET TotalPayment=? WHERE AdminID=?"); // Empty statement object
+            stmt.setInt(1, newPaymentTotal);
+            stmt.setInt(2,admissionId);
+            int count = stmt.executeUpdate();
 
             //If count is 0 then no rows were effected so we failed to update successfully
             if(!(count > 0)){
@@ -495,12 +483,12 @@ public class Reporting {
         }catch (SQLException e){
             System.out.println("Failed to communicate with database... Exiting.");
             e.printStackTrace();
-
+/*
             try {
                 c.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-            }
+            }*/
 
             System.exit(-1);
         }
@@ -554,4 +542,6 @@ public class Reporting {
         return retVal;
     }
 }
+
+
 
